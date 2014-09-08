@@ -1,0 +1,90 @@
+
+<div class="wrapper">
+    <div class="header_wrap">
+        <div class="logo"></div>
+        <div class="right user_profile">
+            <ul class="user_vav">
+                <li class="user_name">
+                    <span class="left">{{userName}}</span> 
+                    <span class="left icon-user_nav icon_user-img"></span>
+                    <a href="#quotes" class=" right icon-user_nav icon-arrow_dropdown">
+                    </a>
+
+                </li>
+
+
+                <li><a href="" class="icon-user_nav icon-more"></a></li>
+                <li><a href="" class="icon-user_nav icon-help"></a></li>
+            </ul>
+            <div class="logout_wrap dropmenu" data-ng-click='logout()'>
+                <ul>
+                    <li><a href="#" title="">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main_container">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+        <div class="navigation">
+            <ul>
+                <li class="active"> <a href="#quotes" class="icons_navigation icon-quotes active"></a> <a href="#quotes" class="title">Quotes</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-orders"></a> <a href="#quotes" class="title">Orders</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-jobs"></a> <a href="#quotes" class="title">Jobs</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-purchase"></a> <a href="#quotes" class="title">Purchase</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-warehouse"></a> <a href="#quotes" class="title">Warehouse</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-inventary"></a> <a href="#quotes" class="title">Inventory</a> </li>
+                <li> <a href="#quotes" class="icons_navigation  icon-accounts"></a> <a href="#quotes" class="title">Accounts</a> </li>
+            </ul>
+            <span class="left"><img src="images/anilo.png" width="90" height="72" alt="#quotes"/></span> 
+        </div>
+
+        <div class="right_column">
+
+            <div class="sub_header" >
+                <h1 class="left"><a class="left icon-nxt-prev icon-previous" data-title="Previous" href="#quotes"></a>Quote List</h1>
+                <div class="sub_menu right">
+                    <ul>
+                        <li title='Add New Quote'><a href="#quoteConsole">Quote<span class="icons-normal icons-add left margin_R10" ></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--Dmic---------------------->
+            <div class="grid_wrapper">           
+                <div>
+
+                    <div datatable sajaxsource="quote/GetAllQuote?Filter=0&Token={{loginToken}}"  deleteurl="Quote/DeleteQuote" showinfo="" editurl="1">
+                        <div class='grid_header'> 
+                            <div class="right">	
+                                <ul>
+
+                                    <li class="bg-blue ">	
+                                        <button class="button icons-normal icons-delete" ng-click="deleteClick()"> 
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>  
+
+                            <div class='right margin_R10'>    
+                                <select class='select' ng-model="value" ng-change="selectStatusTypeSelectBox(value)" >                           
+                                    <option value="">All</option>
+                                    <option value="2">Pending Approval</option>
+                                    <option value="3">Approved</option>
+                                    <option value="4">Discard</option>
+                                    <option value="5">Submitted</option>
+                                    <option value="17">Submitted Won</option>
+                                    <option value="18">Submitted Lost</option>
+                                    <option value="15">Rework</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>         
+                </div>	
+                <!--Dmic---------------------->
+
+            </div>
+        </div>
+        <div class="footer"><span class="right">&copy; Anillo Industries INC </span> </div>
+        <div id="fade" class="black_overlay"></div>
+    </div>

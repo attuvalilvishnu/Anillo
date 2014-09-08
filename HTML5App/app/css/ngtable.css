@@ -1,0 +1,11 @@
+.header {
+  cursor:pointer;
+}
+
+.sort-asc div{
+  color: grey;
+}
+
+.sort-desc div{
+  color: orange;
+}

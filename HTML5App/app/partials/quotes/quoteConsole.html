@@ -1,0 +1,222 @@
+<div class="wrapper">
+    <div class="header_wrap">
+        <div class="logo"></div>
+        <div class="right">
+            <ul class="user_vav">
+                <li><span class="left">{{ userName}}</span> <span class="left icon-user_nav icon_user-img"></span><a href="#" class=" right icon-user_nav icon-arrow_dropdown"></a></li>
+                <li><a href="" class="icon-user_nav icon-more"></a></li>
+                <li><a href="" class="icon-user_nav icon-help"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main_container">
+        <div class="navigation">
+            <ul>
+                <li class="active"> <a href="#quotes" class="icons_navigation  icon-quotes"></a> <a href="#quotes" class="title">Quotes</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-orders"></a> <a href="#quoteConsole" class="title">Orders</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-jobs"></a> <a href="#quoteConsole" class="title">Jobs</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-purchase"></a> <a href="#quoteConsole" class="title">Purchase</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-warehouse"></a> <a href="#quoteConsole" class="title">Warehouse</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-inventary"></a> <a href="#quoteConsole" class="title">Inventory</a> </li>
+                <li> <a href="#quoteConsole" class="icons_navigation  icon-accounts"></a> <a href="#quoteConsole" class="title">Accounts</a> </li>
+            </ul>
+            <span class="left"><img src="images/anilo.png" width="90" height="72" alt="#quoteConsole"/></span> 
+        </div>
+
+        <div class="right_column">
+
+
+            <div class="sub_header">
+                <h1 class="left"><a class="left icon-nxt-prev icon-previous margin_R5 margin_T5" data-title="Previous" href="#quotes"></a>Quote Console</h1>
+                <div class="tab">
+                    <ul>
+                        <li data-ng-click="fullQuoteSelect()"><a class='full active' href="" >Full Quote</a></li>
+                        <li data-ng-click="quickQuoteSelect()"><a class='quick' href="">Quick Quote</a></li>
+                    </ul>
+                </div>
+                <div class="icon-navigtion">
+                    <ul>
+                        <!--<li class='disableApprove' title='Approve'><a href="" class="icons-normal icons-approve"></a></li> -->
+                        <li class='disableSave' title='Save'><a href="" class="icons-normal icons-save" ng-disabled='disableSave()' data-ng-click='saveDetails()'></a></li>
+                        <li class='disableSave' title='Save And Add'><a href="" class="icons-normal icons-save-add" ng-disabled='disableSave()'></a></li>
+                        <li title='Duplicate'><a href="" class="icons-normal icons-copy" data-ng-click='copyDetails()'></a></li>
+                        <li title='Attach'><a href="" class="icons-normal icons-attach"></a></li>
+                        <li class='disableDelete'title='Delete'><a href="" class="icons-normal icons-delete"ng-disabled='disableDelete()'></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conteiner" ng-app="myApp">
+                <div class=" width_fix left">
+                    <div class='button_wrap right'>
+                        <ul>
+                            <li style='display:none' class='submitForApprovalButton' > <input class="button_common" ng-disabled='disablesubmitForApproval()'  data-ng-click='submitForApproval()' type='button' value='Submit For Approval'></li>
+                            <li style='display:none' class='pendingApproval'><input class="button_common" ng-disabled='disable()'  data-ng-click='pendingApproval()' type='button' value='Approve'></li>
+                            <li style='display:none' class='RejectButton'> <input class="button_common" ng-disabled='disable()'  data-ng-click='Reject()' type='button' value='Reject'></li>
+                            <li style='display:none' class='CancelButton'><input class="button_common" ng-disabled='disable()'  data-ng-click='Cancel()' type='button' value='Cancel'></li>
+                            <li style='display:none' class='GenerateMailButton'><input class="button_common" ng-disabled='disableSentMail()'  data-ng-click='GenerateMail()' type='button' value='Preview & Send'></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+                <div class="width_fix left margin_T10"> 
+                    <!------------------------	forms left---------------------------->
+                    <div class="width_49per forms left margin_B10">
+                        <ul>
+                            <li>
+                                <label class="title width_150">Quote Number</label>
+                            </li>
+
+                            <li><span class="bolder quoteID"> {{QuoteNo}} </span></li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <label class="title width_150">Customer Name</label>
+                            </li>
+                            <li class="padding_0">
+                                <ul>
+                                    <li class="position_relative">
+                                        <input type="text" bound="true" name="" class="txt width_200 custName" data-ng-model='customerName' ng-keyup='keyPressed(customerName)'> 
+                                        <div class="left Dropdown_ShowCustList">
+
+                                            <div  style='display:none' class='showAvailableCustomers'> 
+                                                <ul>
+                                                    <li ng-click='changeContact(customer)' ng-repeat="customer in customerList| filter:customerName"> 
+                                                        {{customer.Text}} 
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li class="margin_LR-5"><a href="" class="icons-normal icons-info-blue showCustDetails"></a></li>
+                                    <li title="Add Customer">
+                                        <input name="" type="button" class="button-small icon-medium icon-medium_add"></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <ul>
+                            <li>
+                                <label class="title width_150">Sales Person</label>
+                            </li>
+                            <li>
+                                <select class="select width_209"data-ng-model='InitialSalesList' data-ng-options="a.Text for a in salesList">
+
+                                </select>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <label class="title width_150">Quote Comments</label>
+                            </li>
+                            <li class="padding_0">
+                                <ul>
+                                    <li>
+                                        <textarea class="txt_area width_300 height_75 quoteConsoleTextArea"data-ng-model='quoteComments'></textarea>
+                                    </li>
+                                    <li title="Comments"><a href="" class="icon-medium  icon-medium_comment  margin_LR-5"  ng-click='showQuoteCommentPopup()' ></a></li>
+                                </ul>
+                                <div style='display:none' class='popup QuoteCommentPopup' data-ng-click='closePopUp()'>
+                                    <a href="" class="right icons-normal icons-close" id="close"></a>
+                                    <div data-ng-model='selectedQuote' data-ng-click='setNewQuoteComment(QuoteCommentsList)' ng-repeat="QuoteCommentsList in QuoteCommentsList"> <span>{{ QuoteCommentsList.Text}}</span> </div> 
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!------------------------	forms right---------------------------->
+                    <div class="width_49per right margin_B10">
+                        <div class="width_45per right hidden">	<a href="#" class="disable left"><span class="icons-normal icons-info-white margin_R10"></span>LTA</a></div>
+
+                        <div class="width_fix forms left">
+                            <ul>
+                                <li>
+                                    <label class="title width_150">Status</label>
+                                </li>
+                                <li class="width_200">
+                                    <span class="status"> 
+                                        {{status}}  
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <label class="title width_150">Contact</label>
+                                </li>
+                                <li>	
+                                    <!--  <input type="text" bound="true" name="" id="#" class="txt width_200" data-ng-model='contact'> -->
+                                    <select class="select width_209" data-ng-model='initialContact' data-ng-options="a.Text for a in Contact" >
+
+                                    </select>
+
+
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <label class="title width_150">Source</label>
+                                </li>
+                                <li>
+                                    <select class="select width_209" data-ng-model='initialSourceList' data-ng-options="a.Text for a in SourceList" >
+
+                                    </select>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <label class="title width_150">Total Amount</label>
+                                </li>
+                                <li class="width_200"> <span class="right font-18 totalCost"> {{totalCost}}  </span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid_wrapper">
+
+
+
+                    <div datatable sajaxsource="Quote/BindQuoteDetailsbyQuoteId?QuoteID={{quoteId}}&Token={{loginToken}}" deleteurl="Quote/DeleteQuotePartDetails">
+                        <div class='grid_header'> 
+                            <div class="right">	
+                                <div class='inputFile'> 
+                                    <input type='file' name="Select File" class=""/>
+                                </div>
+                                <ul>
+                                    <li class="bg-blue quoteConsoleAdd " title="Add New Part Details">
+                                        <button class="button icons-normal icons-add" data-ng-click='addNewPartDetails()'> 
+                                        </button> 
+                                    </li>
+                                    <li class="bg-blue quoteConsoleDelete " title='Delete'>
+                                        <button class="button icons-normal icons-delete" ng-click="deletePartDetails()"> 
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div> 
+                    </div>
+
+
+                </div>
+                <!-----------------	grid closee---------------> 
+
+            </div>
+        </div>
+        <div class="footer"><span class="right">&copy; Anillo Industries INC </span> </div>
+        <div id="fade" class="black_overlay"></div>
+    </div>
+
+
+
+
+
+
+</div>
+

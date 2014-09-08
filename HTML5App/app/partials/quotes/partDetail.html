@@ -1,0 +1,283 @@
+<div class="popup  part_details_popup"  ng-controller="partDetailController">
+    <h1>Part Details</h1>
+    <a href="" title="Close" class="right icons-normal icons-close" id="close" data-ng-click="closePopup()"></a>
+    <div class="popup_container">
+     
+        <div class="column  bg_light_gray left">
+            <div class="left forms width_fix">
+                <ul>
+                    <li>
+                        <label class="title width_100">Quote Number </label>
+                    </li>
+            <li> <strong>{{QuoteNo}}</strong></li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">Customer PN</label>
+                    </li>
+                    <li>
+                        <input type="text" class="txt width_200" name="" bound="true" ng-model="quoteDetails.CustomerPn">
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">Anillo PN </label>
+                    </li>
+                    <li>
+                       <input class="txt width_200" type="text" keyboard-poster post-function="searchFlight" ng-model="quoteDetails.AnilloPn" name="first_name" list="_countries" id="partNameList" ng-change="changePartDetail(quoteDetails.AnilloPn)" >                   
+                       <datalist id="_countries" class="part_detail-PN">                            
+                            <option ng-repeat="part in Parts" data-key="{{part.Key}}">{{part.Text}}</option>
+                        </datalist> 
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">Lead Time </label>
+                    </li>
+                    <li>                          
+                        <select class="select width_200" ng-model="selectedLeadTime" ng-options="obj.Text for obj in LeadTime" ng-selected="">      
+                        </select>                                 
+                    </li>
+                </ul>
+                <!-- <ul>
+                        <li>
+                                <label class="title width_100">File </label>
+                        </li>
+                        <li>
+                                <input type="file" size="20" name="">
+                        </li>
+                </ul>-->
+                <ul>
+                    <li>
+                        <label class="title width_100">Item Notes </label>
+                    </li>
+                    <li>                                  
+                        <textarea class="txt_area width_200" ng-model="quoteDetails.ItemNotes" rows="3" cols="20">   </textarea> 
+                    </li>
+                </ul>
+                <ul ng-show="QuoteType">
+                    <li>
+                        <label class="title width_100">Material Cost </label>
+                    </li>
+                    <li>
+                        <input class="txt width_200 text-align_right " type="text" ng-model="quoteDetails.MaterialCost" maxlength="6" ng-change="getUnitPrice()" required="required" numbers-only="numbers-only">
+                    </li>
+                </ul>
+                <ul  ng-show="QuoteType" >
+                    <li>
+                        <label class="title width_100">Labor Cost </label>
+                    </li>
+                    <li>
+                        <input class="txt width_200 text-align_right  " type="text" ng-model="quoteDetails.LabourCost" maxlength="6" ng-change="getUnitPrice()" required="required" numbers-only="numbers-only">
+                    </li>
+                </ul>
+                <ul  ng-show="QuoteType">
+                    <li>
+                        <label class="title width_100">Processing Cost </label>
+                    </li>
+                    <li>
+                        <input class="txt width_200 text-align_right " type="text" ng-model="quoteDetails.ProcessingCost" maxlength="6" ng-change="getUnitPrice()" required="required" numbers-only="numbers-only">
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">
+                            Unit Price
+                    </li>
+                    <li>
+            <input id="unitPrice" class="txt width_200 text-align_right" type="text" ng-model="quoteDetails.UnitPrice" ng-change="getUnitPrice()" required="required"  numbers-only="numbers-only">
+                    </li>
+                </ul>
+                <li>
+                    <label class="title width_100">
+                        Quantity        
+                </li>       
+                <li>
+        <input id="quantity" class="txt width_98 text-align_right" type="text" ng-model="quoteDetails.Quantity" ng-change="getUnitPrice()" required="required" quantity="quantity">
+                    <select class="select width_98" ng-model="selectedUOM" ng-options="obj.Text for obj in UOM"> </select>  
+                </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">
+                            Discount
+                    </li>
+                    <li>
+        <input id="discount" class="txt width_200 text-align_right" type="text" ng-model="quoteDetails.Discount" ng-change="getUnitPrice()" quantity="quantity">
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label class="title width_100">
+                            Total Amount</label>
+                    </li>
+        <li class="T_amount">$ {{quoteDetails.TotalCost}}</li>
+                </ul>
+            </div>
+
+
+            <span class="icon-list right">
+                
+                    <ul>
+                        <li class="bg-blue" title="Save">
+                            <input name="saveBtn" type="button" ng-click="saveClick()" class="button icons-normal icons-save">
+                        </li>
+                    </ul>
+                
+            </span>
+        </div>        
+     
+        <!-- -----------------------right pannel-------------------------->
+        <div class="width_56per   right ">
+            <div id="accordion-container">
+                
+                <!-- Inventory Details -->
+                <div class="left width_fix">        
+                    <div class="accordion-header {{(active)?'active-header':'inactive-header'}} common"  ng-click="accordionClick()">
+                        <h2 class="left">Inventory Details</h2>
+                        <div class="right">
+                            <ul><li><a href="javascript:void(0)" class="active">Active</a></li>
+            <li><a href="javascript:void(0)">UNSAFE</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-content left forms {{(active)?'':'inactive'}}">
+            <div class="left width_fix accordion-bg ">
+                        <ul>
+                            <li>
+          <label class="title">In Stock </label>
+                            </li>
+        <li>{{partDetails.Onhand}}</li>
+                            <li>
+            <label class="title">Allocated</label>
+                            </li>
+                            <li> {{partDetails.Allocated}} </li>
+                        </ul>
+                        <ul>
+                            <li>
+          <label class="title">In Production</label>
+                            </li>
+                            <li> {{partDetails.Production}} </li>
+                            <li>
+          <label class="title">Packaging</label>
+                            </li>
+                            <li> {{partDetails.Packaging}} </li>
+                        </ul>
+                        <ul>
+                            <li>
+            <label class="title ">Balance</label>
+                            </li>
+                            <li>{{partDetails.Balance}}</li>
+                        </ul>
+                        </div>
+       
+                  <div class=" width_fix left bg_light_blue padding_5"><span class="left margin_R5 bolder_popup">Stock Adjusted</span><span>{{partDetails.StockAdjustedBy}}</span></div>
+       
+                    </div>
+                </div>
+
+               <!-- Order History -->
+                <div class="left width_fix">        
+                    <div class="accordion-header {{(orderHis)?'active-header':'inactive-header'}}" ng-click="accordionClick2()">
+                        <h2 class="left">Order History</h2>
+                    </div>
+                    <div class="accordion-content left accordion-bg forms {{orderHis?'':'inactive'}}">
+                    <div class="grid_wrapper padding_T10" >                                                   
+                        <div datatable sajaxsource="Quote/GetPartOrderDetailsByPartId?PartId={{ partDetailsId }}&Token={{loginToken}}" >
+                              <div class="grid_header"></div>
+                        </div>                
+                        </div>
+                    </div>                   
+                </div>
+                
+                <!-- Part Information -->
+                 <div class="left width_fix">        
+                    <div class="accordion-header {{(partInfoActive)?'active-header':'inactive-header'}} common " ng-click="accordionClick1()">
+                        <h2 class="left">Part Information</h2>
+                        <ul>
+                            <li>
+                     <a class="disable left" href="javascript:void(0)">
+                                    <span class="icons-normal icons-info-white margin_R5"></span>LTA</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="accordion-content left {{partInfoActive?'':'inactive'}}">
+                        <div class="left width_fix accordion-bg forms">
+                <div class="part_info-tile">        
+                    <span class=" left bolder margin_R10">Material</span><span>{{partDetails.Material}}</span>
+                </div>
+                 
+                            <ul>
+                                <li>
+                <label class="title">Min Level </label>
+                                </li>
+                                <li>{{partDetails.Min}}</li>
+                                <li>
+                <label class="title">Lead Time</label>
+                                </li>
+                                <li>{{partDetails.Leadtime}}</li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    <label class="title">REV</label>
+                                </li>
+                                <li> {{partDetails.Rev}}</li>
+                                <li>
+                                    <label class="title">Item</label>
+                                </li>
+                                <li>{{partDetails.ItemName}}</li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    <label class="title">OD</label>
+                                </li>
+                                <li>{{partDetails.Od}}</li>
+                                <li>
+                                    <label class="title">THK</label>
+                                </li>
+                                <li> {{partDetails.Thk}} </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    <label class="title">ID</label>
+                                </li>
+                                <li>{{partDetails.Id}}</li>
+
+                                <li>
+                                    <label class="title">High</label>
+                                </li>
+                                <li>{{partDetails.High}}</li>
+                            </ul>
+                            <ul>
+                                <li>
+                                </li>
+                                <li></li>
+                                <li>
+                                    <label class="title">Low</label>
+                                </li>
+                                <li>{{partDetails.Low}}</li>
+                            </ul>
+                        </div>
+            <div class="left width_fix  bg_light_blue padding_5">
+            <span class="left margin_R5 bolder_popup">Last Job No </span><span class="left">{{partDetails.LastJobNo}}</span>
+                            <div class="right common">
+                                <ul class="margin_R0">
+            <li class="enquiry_bg"><a href="javascript:void(0)" class="icons-normal icons-settings bg_none padding_0"></a></li>
+            <li class="enquiry_bg"><a href="javascript:void(0)" class="icons-normal icons-settings bg_none padding_0"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="left width_fix">        
+                        <div class="accordion-header {{(attachMentActive)?'active-header':'inactive-header'}}">
+                            <h2 class="left">Attachments</h2>
+                        </div>
+                        <div class="accordion-content left accordion-bg forms  {{attachMentActive?'':'inactive'}}">
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </div>

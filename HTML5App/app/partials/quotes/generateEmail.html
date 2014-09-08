@@ -1,0 +1,26 @@
+<div class=" popup generate_email_popup">	
+    <h1>Email</h1>
+    <a href="" data-ng-click='closeEmailPopup()' class="right icons-normal icons-close" id="close"></a>
+    <div class="popup_container">
+        <div class="width_fix left ">	
+            <div class="width_fix forms"><ul>
+                    <li><label class="title width_100">To</label></li>
+                    <li><input data-ng-model='sendTo' type="text" bound="true" name="" id="#" class="txt width_700"></li>
+                </ul>
+                <ul>
+                    <li><label class="title width_100">Subject</label></li>
+                    <li><input data-ng-model="sendSubject" type="text" bound="true" name="" id="#" class="txt width_700"></li>
+                </ul>
+                <div class="line"></div>
+            </div>
+            <div class=" width_fix left forms">
+                <textarea data-ng-model='sendBody' class="txt_area width_fix left height_300"></textarea>
+            </div>
+            <input type="button" data-ng-click="sendMail()" class="button margin_T10 right"  name="Send" value="Send">
+        </div>
+
+
+
+
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Anillo ERP</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+        <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+        <link rel="stylesheet" href="css/styles.css"/>     
+        <link href="bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+
+    <body>
+        <div class="wrapper">
+	<div class="bg_image"> <img src="images/bg_index.png" width="100%"/> </div>
+	<div class="log-header_wrap">
+		<div class="logo"></div>
+	</div>
+	
+       
+        <div class="log_wrap">
+            <div class="left-logo"></div>   
+            <div class="login forms">
+             <form name="loginForm" ng-controller="LoginController" ng-submit="login(credentials)" novalidate>        
+              
+                <ul class="margin_T10 left">
+                    <li class="left">
+                       <input type="text" class="text_log log_user" value="User Name" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" name="" ng-model="credentials.username">
+                    </li>
+                    <li class="left">
+                       <input type="password" class="text_log log_user log_password " value="Password" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  name="" ng-model="credentials.password">
+                    </li>
+                    <li class="left">
+                       <input type="checkbox" ng-model="isChecked" class="check" checked>
+                            Keep me logged in</li>
+                    <li class="left" text-align_center>
+                       <!-- <input name="Login" type="button"  value="Login"class="log_button log_user log_login"/> -->
+                        <button type="submit" class="log_button log_user log_login">Login</button>
+                    </li>
+                    <li class="left width_fix"><a href="#"  class="left">Forgot Password?</a><a href="#" class="right">Cancel</a></li>
+                </ul>
+             </form>
+            </div>             
+        </div>       
+        
+             <div class="log-footer">© Anillo Industries, Inc.</div>
+        </div> 
+
+        <!-- Core Libraries -->
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        
+        <!-- Datatables -->
+        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <!-- Angular Dependencies -->
+        <script src="bower_components/angular-route/angular-route.js"></script>
+
+        <!-- Custom Files -->
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script>
+        
+    </body>
+</html>

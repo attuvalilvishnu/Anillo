@@ -1,0 +1,35 @@
+
+            <div class="bg_image"> <img src="images/bg_index.png" width="100%"/> </div>
+            <div class="log-header_wrap">
+                <div class="logo"></div>
+            </div>
+
+
+            <div class="log_wrap">
+                <div class="left-logo"></div>   
+                <div class="login forms">
+                    <form name="loginForm" ng-submit="login(credentials)" novalidate>        
+
+                        <ul class="margin_T10 left">
+                            <li class="left">
+                                <input type="text" placeholder="{{displayname}}" class="text_log log_user" value="User Name" onfocus="if (this.value == this.defaultValue)
+                                           this.value = '';" onblur="if (this.value == '')
+                                                               this.value = this.defaultValue;" name="" ng-model="credentials.username">
+                            </li>
+                            <li class="left">
+                                <input type="password" placeholder="{{displaypassword}}" class="text_log log_user log_password " value="Password" onfocus="if (this.value == this.defaultValue)
+                                           this.value = '******';" onblur="if (this.value == '******')
+                                                               this.value = 'Enter Password';"  name="" ng-model="credentials.password">
+                            </li>
+                            <li class="left">
+                                <input type="checkbox" ng-model="isChecked" class="check" checked>
+                                Keep me logged in</li>
+                            <li class="left" text-align_center>
+                                <!-- <input name="Login" type="button"  value="Login"class="log_button log_user log_login"/> -->
+                                <button type="submit" class="log_button log_user log_login">Login</button>
+                            </li>
+                            <li class="left width_fix"><a href="#"  class="left">Forgot Password?</a><a href="#" class="right">Cancel</a></li>
+                        </ul>
+                    </form>
+                </div>             
+            </div>     
